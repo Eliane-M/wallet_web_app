@@ -23,7 +23,7 @@ class PaymentMethodSerializer(serializers.ModelSerializer):
         model = PaymentMethod
         fields = "__all__"
 
-class TrnsactionCategorySerializer(serializers.ModelSerial):
+class TrnsactionCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = TransactionCategory
         fields = "__all__"
