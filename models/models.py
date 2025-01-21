@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Wallet(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     balance = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -11,7 +11,32 @@ class Wallet(models.Model):
     last_transaction_amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, default=0)
 
     def __str__(self):
-        return self.user, self.balance
+        return self.name, self.account_type
+    
+class AccountDetails(models.Model):
+    ACCOUNT_TYPE = [
+        ('bank_account', 'bank_account'),
+        ('momo_account', 'momo_account'),
+        ('cash', 'cash'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=True, default=None)
+    account = models.OneToOneField(Wallet, on_delete=models.CASCADE, null=True, blank=True)
+    account_type = models.CharField(choices=ACCOUNT_TYPE, max_length=255)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    # For Bank account
+    bank_name = models.CharField(max_length=255, blank=True, null=True)
+    account_number = models.CharField(max_length=255, blank=True, null=True)
+    account_holder_name = models.CharField(max_length=255, blank=True, null=True)
+    # For Mobile money
+    phone_number = models.IntegerField(blank=True, null=True)
+    provider = models.CharField(max_length=50, blank=True, null=True)
+    # Card details
+    card_number = models.CharField(max_length=255, blank=True, null=True)
+    expiration_date = models.DateField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"Details for {self.account.name}"
     
 class Transaction(models.Model):
     TRANSACTION_TYPES = [
@@ -27,7 +52,7 @@ class Transaction(models.Model):
         ('Failed', 'Failed'),
         ('Cancelled', 'Cancelled'),
     ]
-
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     transaction_id = models.CharField(max_length=255, null=True)
     transaction_type = models.CharField(choices=TRANSACTION_TYPES, max_length=255, null=True)
@@ -45,7 +70,7 @@ class PaymentMethod(models.Model):
         ('Momo', 'Momo Pay'),
     ]
 
-    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
+    Account = models.ForeignKey(Wallet, on_delete=models.CASCADE, null=True, blank=True)
     method = models.CharField(choices=METHODS, max_length=255)
     title = models.CharField(max_length=255)
     # For bank transfer

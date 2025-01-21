@@ -13,6 +13,11 @@ class WalletSerializer(serializers.ModelSerializer):
         model = Wallet
         fields = "__all__"
 
+class AccountDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AccountDetails
+        fields = "__all__"
+
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
