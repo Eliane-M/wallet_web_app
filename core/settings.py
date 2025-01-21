@@ -20,7 +20,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'wallet-web-app-hama.onrender.com', 'wallet-web-application-zzq9.onrender.com']
 
 
 # Application definition
@@ -73,6 +73,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
+    'https://wallet-web-application-zzq9.onrender.com',
+    'https://wallet-web-app-hama.onrender.com',
 ]
 
 
@@ -99,7 +101,7 @@ CORS_ALLOW_HEADERS = [
     'x-xsrftoken',
 ]
 
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = ['https://wallet-web-app-hama.onrender.com']
 
 
 # Database
