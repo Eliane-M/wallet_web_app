@@ -5,7 +5,7 @@ This directory is for the backend, developed using Django framework.
 
 ## Getting started
 
-To get started with the website, you can use the [Live frontend website](https://wallet-web-app-hama.onrender.com)
+To get started with the website, you can use the [Live frontend website](https://wallet-web-app-hama.onrender.com). [Link for deployed backend](https://wallet-web-application-zzq9.onrender.com)
 or clone the repo to use it locally. (Recommended in case the frontend link is giving trouble).
 
 To clone the repo, use the following commands in your terminal
