@@ -94,7 +94,7 @@ def generate_pdf_report(data):
         pdf.drawString(100, y, f"{txn['id']}    {txn['type']}    {txn['amount']}    {txn['category']}    {txn['timestamp']}")
         y -= 20
 
-        if y < 50:  # Create a new page if necessary
+        if y < 50:
             pdf.showPage()
             y = 800
 
