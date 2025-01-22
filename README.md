@@ -36,17 +36,21 @@ then run the project on the local server
 python manage.py runserver
 ```
 
-## Here is a list of the urls in the wallet_web_app:
+## Below is a list of the URLs in the wallet_web_app:
 
 ### For authentication
 To register/signup: http://127.0.0.1:8000/api/auth/register/
+
   Body:
+  
     - email
     - password
     - full_name
 
 To login: http://127.0.0.1:8000/api/auth/login/
+
   Body:
+  
     - username (use the registered email)
     - password
 
@@ -56,7 +60,9 @@ To get all transactions: http://127.0.0.1:8000/api/wallet/
 To get the current balance: http://127.0.0.1:8000/api/wallet/balance/
 
 To withdraw: http://127.0.0.1:8000/api/wallet/withdraw/
+
   Body:
+  
     - transaction_type: "Withdrawal"
     - amount
 
