@@ -61,12 +61,16 @@ To withdraw: http://127.0.0.1:8000/api/wallet/withdraw/
     - amount
 
 To deposit: http://127.0.0.1:8000/api/wallet/deposit/
+
   Body:
+  
     - transaction_type: "Deposit"
     - amount
 
 To get a report: http://127.0.0.1:8000/api/wallet/report/
+
   Body:
+  
     - start_date: "MM/DD/YYYY"
     - end_date: "MM/DD/YY"
     - account_id
@@ -74,7 +78,9 @@ To get a report: http://127.0.0.1:8000/api/wallet/report/
 
 ### For account creations
 http://127.0.0.1:8000/api/accounts/
+
   Body:
+  
     - name
     - account_type (can either be momo_account, bank_account or cash)
     if the account type is momo_account:
