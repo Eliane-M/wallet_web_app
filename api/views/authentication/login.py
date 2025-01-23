@@ -11,7 +11,6 @@ def login_api(request):
     try:  
         if username and password:
             user = authenticate(username=username, password=password)
-            print('username: ' + user.username)
             if user:
 
                 if user.is_active:
@@ -23,7 +22,6 @@ def login_api(request):
                         "first_name": user.first_name,
                         "last_name": user.last_name
                     }
-                    print("user should be logged in")
 
                     return Response({
                     "message": "Login Successful.",

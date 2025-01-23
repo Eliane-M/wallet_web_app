@@ -22,6 +22,7 @@ class AccountDetails(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=True, default=None)
     account = models.OneToOneField(Wallet, on_delete=models.CASCADE, null=True, blank=True)
+    # account_id = models.UUIDField(null=True, blank=True)
     account_type = models.CharField(choices=ACCOUNT_TYPE, max_length=255)
     name = models.CharField(max_length=255, null=True, blank=True)
     # For Bank account
@@ -70,7 +71,7 @@ class PaymentMethod(models.Model):
         ('Momo', 'Momo Pay'),
     ]
 
-    Account = models.ForeignKey(Wallet, on_delete=models.CASCADE, null=True, blank=True)
+    account = models.ForeignKey(Wallet, on_delete=models.CASCADE, null=True, blank=True)
     method = models.CharField(choices=METHODS, max_length=255)
     title = models.CharField(max_length=255)
     # For bank transfer
